@@ -1,17 +1,12 @@
-"""Mars Calendar and orbit calculation based on Allison and McEwan (2000), Allison (1997)
+"""Mars24 algorithm
+
+Mars Calendar and orbit calculation based on Allison and McEwan (2000), Allison (1997)
 
 Allison, M., and M. McEwen 2000. A post-Pathfinder evaluation of aerocentric solar coordinates with improved timing recipes for Mars seasonal/diurnal climate studies. Planet. Space Sci. 48, 215-235
 
 Allison, M. 1997. Accurate analytic representations of solar time and seasons on Mars with applications to the Pathfinder/Surveyor missions. Geophys. Res. Lett. 24, 1967-1970.
 
 http://www.giss.nasa.gov/tools/mars24/
-
- (Modified BSD license)
-     Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-     Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-     Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- Neither the name of the <ORGANIZATION> nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
- 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
 
@@ -224,12 +219,12 @@ def equation_of_time(j2000_ott=None):
     return EOT
 
 def j2000_from_Mars_Solar_Date(msd=0):
-    """Returns j200 based on MSD"""
+    """Returns j2000 based on MSD"""
     j2000_ott = ((msd + 0.00096 - 44796.0) * 1.027491252)+4.5
     return j2000_ott
 
 def j2000_ott_from_Mars_Solar_Date(msd=0):
-    """Returns j200 based on MSD"""
+    """Returns j2000 offset based on MSD"""
     j2000 = j2000_from_Mars_Solar_Date(msd)
     j2000_ott = julian_tt(j2000+j2000_epoch())
     return j2000_ott-j2000_epoch()
