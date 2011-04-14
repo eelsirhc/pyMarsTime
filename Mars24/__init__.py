@@ -16,8 +16,12 @@ http://www.giss.nasa.gov/tools/mars24/
 """
 
 import time
-import math
-import numpy
+try:
+    import numpy as np
+    use_numpy=True
+except:
+    use_numpy=False
+    import math as np
 
 def west_to_east(west):
     """Convert from aerographic west longitude to aerocentric east longitude,
@@ -46,18 +50,62 @@ def julian(m=None):
 def utc_to_tt_offset(jday=None):
     """Returns the offset in seconds from a julian date in Terrestrial Time (TT)
     to a Julian day in Coordinated Universal Time (UTC)"""
+
+    if use_numpy:
+        return utc_to_tt_offset_numpy(jday)
+    else:
+        return utc_to_tt_offset_math(jday)
+
+def utc_to_tt_offset_math(jday=None):
+    """Returns the offset in seconds from a julian date in Terrestrial Time (TT)
+    to a Julian day in Coordinated Universal Time (UTC) [MATH]"""
     if jday is None:
         jday_np=julian()
-    elif type(jday) is not numpy.ndarray:
-        jday_np = numpy.array(jday)
+    else:
+        jday_np = jday
+    
+    jday_min = 2441317.5
+    jday_vals = [     -2441317.5, 0.,    182.,    366.,
+                       731.,   1096.,   1461.,   1827.,
+                       2192.,   2557.,   2922.,   3469.,
+                       3834.,   4199.,   4930.,   5844.,
+                       6575.,   6940.,   7487.,   7852.,
+                       8217.,   8766.,   9313.,   9862.,
+                       12419.,  13515.]
+
+    offset_min = 32.184
+    offset_vals = [-32.184,10., 11.0, 12.0, 13.0,
+                    14.0, 15.0, 16.0, 17.0, 18.0,
+                    19.0, 20.0, 21.0, 22.0, 23.0,
+                    24.0, 25.0, 26.0, 27.0, 28.0,
+                    29.0, 30.0, 31.0, 32.0, 33.0,
+                    34.0]
+
+    if jday_np <= jday_min+jday_vals[0]:
+        return offset_min+offset_vals[0]
+    else:
+        for i in range(1, len(offset_vals)):
+            if (jday_min+jday_vals[i] <= jday_np) and\
+                    (jday_min+jday_vals[i+1] > jday_np) :
+                break                
+        return offset_min+offset_vals[i]
+
+
+def utc_to_tt_offset_numpy(jday=None):
+    """Returns the offset in seconds from a julian date in Terrestrial Time (TT)
+    to a Julian day in Coordinated Universal Time (UTC) [NUMPY]"""
+    if jday is None:
+        jday_np=julian()
+    elif type(jday) is not np.ndarray:
+        jday_np = np.array(jday)
     else:
         jday_np = jday
         
-    #offsets=numpy.zeros(jday.shape)
+    #offsets=np.zeros(jday.shape)
 
 
     jday_vals = 2441317.5 +\
-        numpy.array([     -2441317.5, 0.,    182.,    366.,
+        np.array([     -2441317.5, 0.,    182.,    366.,
                            731.,   1096.,   1461.,   1827.,
                            2192.,   2557.,   2922.,   3469.,
                            3834.,   4199.,   4930.,   5844.,
@@ -65,7 +113,7 @@ def utc_to_tt_offset(jday=None):
                            8217.,   8766.,   9313.,   9862.,
                            12419.,  13515.])
 
-    offset_vals = 32.184 + numpy.array([-32.184,10., 11.0, 12.0, 13.0,
+    offset_vals = 32.184 + np.array([-32.184,10., 11.0, 12.0, 13.0,
                                          14.0, 15.0, 16.0, 17.0, 18.0,
                                          19.0, 20.0, 21.0, 22.0, 23.0,
                                          24.0, 25.0, 26.0, 27.0, 28.0,
@@ -74,15 +122,15 @@ def utc_to_tt_offset(jday=None):
 
     try:
         offset = offset_vals[
-            numpy.clip(numpy.digitize(jday_np, jday_vals)
+            np.clip(np.digitize(jday_np, jday_vals)
                        ,1,offset_vals.size) -1]
     except:
         offset = offset_vals[
-            numpy.clip(numpy.digitize([jday_np], jday_vals),
+            np.clip(np.digitize([jday_np], jday_vals),
                        1,offset_vals.size) -1]
         offset=offset[0]
 
-
+        
     return offset# 64.184
 
 
@@ -128,7 +176,7 @@ def alpha_perturbs(j2000_ott=None):
 
     pbs = 0
     for (A,tau,phi) in zip(array_A, array_tau, array_phi):
-        pbs+=A*numpy.cos(((0.985626 * j2000_ott/tau) + phi)*numpy.pi/180.)
+        pbs+=A*np.cos(((0.985626 * j2000_ott/tau) + phi)*np.pi/180.)
 
     return pbs
 
@@ -137,14 +185,14 @@ def equation_of_center(j2000_ott=None):
     if j2000_ott is None:
         j2000_ott = j2000_offset_tt()
 
-    M = Mars_Mean_Anomaly(j2000_ott)*numpy.pi/180.
+    M = Mars_Mean_Anomaly(j2000_ott)*np.pi/180.
     pbs = alpha_perturbs(j2000_ott)
 
-    val = (10.691 + 3.0e-7 * j2000_ott)*numpy.sin(M)\
-        + 0.6230 * numpy.sin(2*M)\
-        + 0.0500 * numpy.sin(3*M)\
-        + 0.0050 * numpy.sin(4*M)\
-        + 0.0005 * numpy.sin(5*M) \
+    val = (10.691 + 3.0e-7 * j2000_ott)*np.sin(M)\
+        + 0.6230 * np.sin(2*M)\
+        + 0.0500 * np.sin(3*M)\
+        + 0.0050 * np.sin(4*M)\
+        + 0.0005 * np.sin(5*M) \
         + pbs
 
     return val
@@ -167,11 +215,11 @@ def equation_of_time(j2000_ott=None):
     if j2000_ott is None:
         j2000_ott = j2000_offset_tt()
 
-    ls = Mars_Ls(j2000_ott)*numpy.pi/180.
+    ls = Mars_Ls(j2000_ott)*np.pi/180.
 
-    EOT = 2.861*numpy.sin(2*ls)\
-        - 0.071 * numpy.sin(4*ls)\
-        + 0.002 * numpy.sin(6*ls) - equation_of_center(j2000_ott)
+    EOT = 2.861*np.sin(2*ls)\
+        - 0.071 * np.sin(4*ls)\
+        + 0.002 * np.sin(6*ls) - equation_of_center(j2000_ott)
 
     return EOT
 
@@ -243,10 +291,13 @@ def solar_declination(ls=None):
     """Returns the solar declination"""
     if ls is None:
         ls= Mars_Ls()
-    ls1 = ls * numpy.pi/180.
+    ls1 = ls * np.pi/180.
 
-    dec = numpy.arcsin(0.42565 * numpy.sin(ls1)) + 0.25*(numpy.pi/180) * numpy.sin(ls1)
-    dec = dec * 180. / numpy.pi
+    if use_numpy:
+        dec = np.arcsin(0.42565 * np.sin(ls1)) + 0.25*(np.pi/180) * np.sin(ls1)
+    else:
+        dec = np.asin(0.42565 * np.sin(ls1)) + 0.25*(np.pi/180) * np.sin(ls1)
+    dec = dec * 180. / np.pi
     return dec
 
 def heliocentric_distance(j2000_ott=None):
@@ -254,13 +305,13 @@ def heliocentric_distance(j2000_ott=None):
     if j2000_ott is None:
         j2000_ott = j2000_offset_tt()
 
-    M = Mars_Mean_Anomaly(j2000_ott)*numpy.pi/180.
+    M = Mars_Mean_Anomaly(j2000_ott)*np.pi/180.
     
     rm = 1.523679 * \
-        (1.00436 - 0.09309*numpy.cos(M) \
-             - 0.004336*numpy.cos(2*M) \
-             - 0.00031*numpy.cos(3*M)\
-             - 0.00003*numpy.cos(4*M))
+        (1.00436 - 0.09309*np.cos(M) \
+             - 0.004336*np.cos(2*M) \
+             - 0.00031*np.cos(3*M)\
+             - 0.00003*np.cos(4*M))
 
     return rm
 
@@ -271,7 +322,7 @@ def heliocentric_longitude(j2000_ott=None):
     ls = Mars_Ls(j2000_ott)
 
     im = ls + 85.061 - \
-        0.015 * numpy.sin((71+2*ls)*numpy.pi/180.) - \
+        0.015 * np.sin((71+2*ls)*np.pi/180.) - \
         5.5e-6*j2000_ott
     
     return im % 360.
@@ -285,7 +336,7 @@ def heliocentric_latitude(j2000_ott=None):
     ls        = Mars_Ls(j2000_ott)
 
     bm = -(1.8497 - 2.23e-5*j2000_ott) \
-        * numpy.sin((ls - 144.50 + 2.57e-6*j2000_ott)*numpy.pi/180.)
+        * np.sin((ls - 144.50 + 2.57e-6*j2000_ott)*np.pi/180.)
 
     return bm
 
@@ -295,8 +346,8 @@ def hourangle(longitude=0, j2000_ott=None):
         jday_tt = julian_tt()
         j2000_ott = j2000_offset_tt()
         
-    subsol = subsolar_longitude(j2000_ott)*numpy.pi/180.
-    hourangle = longitude*numpy.pi/180. - subsol
+    subsol = subsolar_longitude(j2000_ott)*np.pi/180.
+    hourangle = longitude*np.pi/180. - subsol
     return hourangle
 
 def solar_zenith(longitude=0,latitude=0, j2000_ott=None):
@@ -310,12 +361,15 @@ def solar_zenith(longitude=0,latitude=0, j2000_ott=None):
         
     ha = hourangle(longitude, j2000_ott)
     ls = Mars_Ls(j2000_ott)
-    dec = solar_declination(ls)*numpy.pi/180
+    dec = solar_declination(ls)*np.pi/180
 
-    cosZ = numpy.sin(dec) * numpy.sin(latitude*numpy.pi/180) + \
-        numpy.cos(dec)*numpy.cos(latitude*numpy.pi/180.)*numpy.cos(ha)
+    cosZ = np.sin(dec) * np.sin(latitude*np.pi/180) + \
+        np.cos(dec)*np.cos(latitude*np.pi/180.)*np.cos(ha)
 
-    Z = numpy.arccos(cosZ)*180./numpy.pi
+    if use_numpy:
+        Z = np.arccos(cosZ)*180./np.pi
+    else:
+        Z = np.acos(cosZ)*180./np.pi
     return Z
 
 def solar_elevation(longitude=0, latitude=0, j2000_ott=None):
@@ -335,14 +389,16 @@ def solar_azimuth(longitude=0, latitude=0, j2000_ott = None):
     
     ha = hourangle(longitude, j2000_ott)
     ls = Mars_Ls(j2000_ott)
-    dec = solar_declination(ls)*numpy.pi/180.
-    denom = (numpy.cos(latitude)*numpy.tan(dec)\
-                 - numpy.sin(latitude)*numpy.cos(ha))
+    dec = solar_declination(ls)*np.pi/180.
+    denom = (np.cos(latitude)*np.tan(dec)\
+                 - np.sin(latitude)*np.cos(ha))
 
-    num = numpy.sin(ha) 
+    num = np.sin(ha) 
 
-    az = (360+numpy.arctan2(num,denom)*180./numpy.pi) % 360.
-
+    if use_numpy:
+        az = (360+np.arctan2(num,denom)*180./np.pi) % 360.
+    else:
+        az = (360+np.atan2(num,denom)*180./np.pi) % 360.
     return az
 
 

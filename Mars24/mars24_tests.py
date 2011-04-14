@@ -1,12 +1,31 @@
 import Mars24
-import numpy 
+try:
+    import numpasdy as np
+    use_numpy=True
+except:
+    use_numpy=False
+    import math as np
+ 
+
 def within(val, low, high):
     return (val>low)&(val<high)
 
 def within_error(val, equal, error):
-    print val, equal
+    #print val, equal
     return (val>(equal-error))&(val<(equal+error))
 
+def test_numpy_or_math():
+    try :
+        import numpy as np
+        print
+        print "Using Numpy"
+        return True
+    except:
+        import math as np
+        print 
+        print "Using Math"
+        return True
+        
 def test_west_to_east():
     assert Mars24.west_to_east(360.0) == 0.271
     assert Mars24.west_to_east(540.0) == Mars24.west_to_east(180.0)
@@ -33,13 +52,13 @@ def test_julian():
 def test_utc_to_tt_offset():
     t =  Mars24.j2000_epoch()
     #j2000 is Jan 1 2000, utc offset should be =32+32.184
-    assert Mars24.utc_to_tt_offset(t) ==64.184
+    assert within_error(Mars24.utc_to_tt_offset(t), 64.184, 1e-3)
 
     t = Mars24.j2000_epoch() - 5*365.
-    assert Mars24.utc_to_tt_offset(t) == 61.184
+    assert within_error(Mars24.utc_to_tt_offset(t), 61.184, 1e-3)
 
     t=0
-    assert Mars24.utc_to_tt_offset(t) == 0
+    assert within_error(Mars24.utc_to_tt_offset(t), 0, 1e-3)
 
 
 def test_julian_tt():
@@ -129,7 +148,7 @@ def test_heliocentric_latitude():
 def test_hourangle():
     assert within_error(Mars24.hourangle(0.0,0.0), -0.67287, 1e-4)
     assert within_error((Mars24.hourangle(15.0,0.0)-
-                        Mars24.hourangle(0.0,0.0))*180/numpy.pi
+                        Mars24.hourangle(0.0,0.0))*180/np.pi
                         , 15,1e-3)
 
 def test_solar_zenith():
