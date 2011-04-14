@@ -3,14 +3,14 @@
 from setuptools import setup
 
 setup(name="Mars24",
-      version='0.3.0',
+      version='0.3.2',
       description='Mars24 library, implements the Mars24 algorithm [Allison and McEwan, 2000]',
       author="Christopher Lee",
       url="http://code.foldmountain.com/mars24",
       author_email="lee@foldmountain.com",
       packages=["Mars24"],
       license="LICENSE.txt",
-      install_requires=["setuptools"],
+      setup_requires=["setuptools"],
       long_description=open("README.txt").read(),
       classifiers=["License :: OSI Approved :: BSD License",
                   "Intended Audience :: Science/Research",
