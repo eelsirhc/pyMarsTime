@@ -238,6 +238,15 @@ def Mars_Solar_Date(j2000_ott = None):
     MSD = (((j2000_ott - 4.5)/1.027491252) + 44796.0 - 0.00096)
     return MSD
     
+def Clancy_Year(j2000_ott = None):
+    """Returns the Mars Year date based on the reference date from Clancy(2000): 1955 April 11, 11am"""
+    if j2000_ott is None:
+        jday_tt = julian_tt()
+        j2000_ott = j2000_offset_tt(jday_tt)
+    ref1955_4_11_11am = -16336.0416 #j200_offset_tt reference
+    year = np.floor(1 + (j2000_ott-ref1955_4_11_11am)/668.5907)
+    return year
+        
 def Coordinated_Mars_Time(j2000_ott = None):
     """The Mean Solar Time at the Prime Meridian"""
     if j2000_ott is None:

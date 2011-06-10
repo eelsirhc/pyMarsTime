@@ -1,6 +1,6 @@
 import Mars24
 try:
-    import numpasdy as np
+    import numpy as np
     use_numpy=True
 except:
     use_numpy=False
@@ -104,6 +104,19 @@ def test_j2000_ott_from_Mars_Solar_Date():
     assert within_error(Mars24.j2000_ott_from_Mars_Solar_Date(1000), -44995.505, 1e-3)
     t=Mars24.Mars_Solar_Date(0)
     assert within_error(Mars24.j2000_ott_from_Mars_Solar_Date(t), 0.0007428,1e-5)
+
+def test_Clancy_Year():
+    #j2000_epoch = 0.0 offset
+    assert within_error(Mars24.Clancy_Year(0.0), 25, 0.5)
+    #1955 april 11th 12pm, julian date = 2435208.955
+    #offset = -16336.0
+    #my 1
+    assert within_error(Mars24.Clancy_Year(-16335.0), 1, 0.5)
+    #6 months later, same year
+    assert within_error(Mars24.Clancy_Year(-16200.0), 1, 0.5)
+    #6 months earlier, 0 year
+    assert within_error(Mars24.Clancy_Year(-16500.0), 0, 0.5)
+    
 
 def test_Coordinated_Mars_Time():
     assert within_error(Mars24.Coordinated_Mars_Time(0.0), 14.8665, 2e-4)
