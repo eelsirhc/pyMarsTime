@@ -244,7 +244,7 @@ def Clancy_Year(j2000_ott = None):
         jday_tt = julian_tt()
         j2000_ott = j2000_offset_tt(jday_tt)
     ref1955_4_11_11am = -16336.0416 #j200_offset_tt reference
-    year = np.floor(1 + (j2000_ott-ref1955_4_11_11am)/668.5907)
+    year = np.floor(1 + (j2000_ott-ref1955_4_11_11am)/(686.978))
     return year
         
 def Coordinated_Mars_Time(j2000_ott = None):
