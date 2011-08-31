@@ -81,7 +81,7 @@ def utc_to_tt_offset_math(jday=None):
     elif jday_np >= jday_min+jday_vals[-1]:
         return offset_min+offset_vals[-1]
     else:
-        for i in range(1, len(offset_vals)):
+        for i in range(0, len(offset_vals)):
             if (jday_min+jday_vals[i] <= jday_np) and\
                     (jday_min+jday_vals[i+1] > jday_np) :
                 break                
@@ -126,7 +126,6 @@ def utc_to_tt_offset_numpy(jday=None):
             np.clip(np.digitize([jday_np], jday_vals),
                        1,offset_vals.size) -1]
         offset=offset[0]
-
         
     return offset# 64.184
 
@@ -266,13 +265,13 @@ def Mars_Year(j2000_ott = None, return_length=False):
 def Mars_Year_math(j2k_math, jday_vals, year_vals, year_length, return_length=False):
 
     if j2k_math < jday_vals[0]:
-        return np.floor((jday_vals[0]-j2k_math)/year_length[0])
+        return np.floor(1+(jday_vals[0]-j2k_math)/year_length[0])
     elif j2k_math >= jday_vals[-1]:
-        return np.floor((jday_vals[-1]-j2k_math)/year_length[-1])
+        return np.floor(1+(jday_vals[-1]-j2k_math)/year_length[-1])
     else:
         for i in range(1, len(year_vals)):
-            if (jday_min+jday_vals[i] <= jday_np) and\
-                    (jday_min+jday_vals[i+1] > jday_np) :
+            if (jday_vals[i] <= j2k_math) and\
+                    (jday_vals[i+1] > j2k_math) :
                 break                
     y= year_vals[i]
     l= year_length[i]

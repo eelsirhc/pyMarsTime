@@ -2,3 +2,5 @@ v0.3.0, 10 Apr 2011 -- Initial Release
 v0.3.4, May 2011  -- Added Clancy_Year to calculate a Mars calendar year
 v0.3.5, July 2011 -- Corrected Clancy_Year to use the number of Earth days rather than Mars sols in a year
 v0.3.6, August 2011 -- Added new Mars_Year calculation that uses Mars_Ls to iteratively find the year boundarys. Clancy year is inconsistent with Mars_Ls for very small values of Ls (~<0.01) from the year boundary.
+v0.3.7, August 2011 -- Corrected math library only part of mars_year
+v0.3.8, August 2011 -- Added nosetests for math vs numpy

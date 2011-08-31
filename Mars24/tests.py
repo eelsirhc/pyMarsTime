@@ -366,3 +366,47 @@ def test_spirit_landing():
     assert within_error(sa, 179.99225,1e-2)
 
 
+def test_math_vs_numpy():
+    try:
+        import numpy as np
+        use_numpy=True
+    except:
+        use_numpy=False
+    
+    if use_numpy:
+        mil = 1073137591000
+        jdut = Mars24.julian(mil)
+        Mars24.use_numpy = False
+        tt_math = Mars24.utc_to_tt_offset(jdut)
+
+        Mars24.use_numpy = True
+        tt_numpy = Mars24.utc_to_tt_offset(jdut)
+        assert within_error(tt_math,tt_numpy,1e-3)
+
+        j2k = Mars24.j2000_offset_tt(Mars24.julian_tt(jdut))
+        Mars24.use_numpy = False
+        mym = Mars24.Mars_Year(j2k)
+        Mars24.use_numpy = True
+        myn = Mars24.Mars_Year(j2k)
+        assert within_error(mym,myn,0.5)
+#----        
+        
+        mil=0
+        jdut = Mars24.julian(mil)
+        Mars24.use_numpy = False
+        tt_math = Mars24.utc_to_tt_offset(jdut)
+
+        Mars24.use_numpy = True
+        tt_numpy = Mars24.utc_to_tt_offset(jdut)
+        assert within_error(tt_math,tt_numpy,1e-4)
+
+        j2k = Mars24.j2000_offset_tt(Mars24.julian_tt(jdut))
+        Mars24.use_numpy = False
+        mym = Mars24.Mars_Year(j2k)
+        Mars24.use_numpy = True
+        myn = Mars24.Mars_Year(j2k)
+        assert within_error(mym,myn,0.5)
+
+        
+
+        
