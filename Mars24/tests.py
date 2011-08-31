@@ -107,7 +107,7 @@ def test_j2000_ott_from_Mars_Solar_Date():
 
 def test_Clancy_Year():
     #j2000_epoch = 0.0 offset
-    assert within_error(Mars24.Clancy_Year(0.0), 25, 0.5)
+    assert within_error(Mars24.Clancy_Year(0.0), 24, 0.5)
     #1955 april 11th 12pm, julian date = 2435208.955
     #offset = -16336.0
     #my 1
@@ -116,8 +116,20 @@ def test_Clancy_Year():
     assert within_error(Mars24.Clancy_Year(-16200.0), 1, 0.5)
     #6 months earlier, 0 year
     assert within_error(Mars24.Clancy_Year(-16500.0), 0, 0.5)
-    
 
+def test_Mars24_Year():
+    #j2000_epoch = 0.0 offset
+    assert within_error(Mars24.Mars_Year(0.0), 24, 0.5)
+    #1955 april 11th 12pm, julian date = 2435208.955
+    #offset = -16336.0
+    #my 1
+    assert within_error(Mars24.Mars_Year(-16335.0), 1, 0.5)
+    #6 months later, same year
+    assert within_error(Mars24.Mars_Year(-16200.0), 1, 0.5)
+    #6 months earlier, 0 year
+    assert within_error(Mars24.Mars_Year(-16500.0), 0, 0.5)
+
+    
 def test_Coordinated_Mars_Time():
     assert within_error(Mars24.Coordinated_Mars_Time(0.0), 14.8665, 2e-4)
     #1 mars hour later
@@ -211,6 +223,17 @@ def test_solar_azimuth():
     assert within_error(Mars24.solar_azimuth(x,45,j2day),180,1e-3)
     assert within_error(Mars24.solar_azimuth(x,-45,j2day),0,1e-3)
 
+def test_on_mills():
+    mills=959804082*1e3
+    j2k_ott = Mars24.j2000_offset_tt(Mars24.julian_tt(Mars24.julian(mills)))
+    assert within_error(j2k_ott, 151.344, 0.001)
+    ls = Mars24.Mars_Ls(j2k_ott)
+    cy = Mars24.Clancy_Year(j2k_ott)
+    my = Mars24.Mars_Year(j2k_ott)
+    assert within_error(ls, 0.0352, 0.001)
+    assert within_error(cy, 24, 0.5)
+    assert within_error(my, 25, 0.5)
+    
 
 def test_midnight_crossing():
     mil = 947116800000
