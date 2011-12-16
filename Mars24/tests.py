@@ -128,6 +128,7 @@ def test_Mars24_Year():
     assert within_error(Mars24.Mars_Year(-16200.0), 1, 0.5)
     #6 months earlier, 0 year
     assert within_error(Mars24.Mars_Year(-16500.0), 0, 0.5)
+    assert within_error(Mars24.Mars_Year(-17025.0), -1, 0.5)
 
     
 def test_Coordinated_Mars_Time():

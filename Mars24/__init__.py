@@ -265,9 +265,9 @@ def Mars_Year(j2000_ott = None, return_length=False):
 def Mars_Year_math(j2k_math, jday_vals, year_vals, year_length, return_length=False):
 
     if j2k_math < jday_vals[0]:
-        return np.floor(1+(jday_vals[0]-j2k_math)/year_length[0])
+        return np.floor(1+(j2k_math-jday_vals[0])/year_length[0])
     elif j2k_math >= jday_vals[-1]:
-        return np.floor(1+(jday_vals[-1]-j2k_math)/year_length[-1])
+        return np.floor(1+(j2k_math-jday_vals[-1])/year_length[-1])
     else:
         for i in range(1, len(year_vals)):
             if (jday_vals[i] <= j2k_math) and\
@@ -289,9 +289,9 @@ def Mars_Year_np(j2k_np, jday_vals, year_vals, year_length, return_length=False)
     year_length = np.array(year_length)
 
     if j2k_np < jday_vals[0]:
-        return np.floor((jday_vals[0]-j2k_np)/year_length[0])
+        return np.floor(1+(j2k_np-jday_vals[0])/year_length[0])
     elif j2k_np >= jday_vals[-1]:
-        return np.floor((jday_vals[-1]-j2k_np)/year_length[-1])
+        return np.floor(1+(j2k_np-jday_vals[-1])/year_length[-1])
     else:
         try:
             v=np.clip(np.digitize(j2k_np,jday_vals),1,jday_vals.size)-1
