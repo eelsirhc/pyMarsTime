@@ -11,6 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   mars24
+
 Indices and tables
 ==================
 
