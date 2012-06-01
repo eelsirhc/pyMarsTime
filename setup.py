@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name="Mars24",
-      version='0.3.9',
+      version='0.4.0',
       description='Mars24 library, implements the Mars24 algorithm [Allison and McEwan, 2000]',
       author="Christopher Lee",
       url="http://code.foldmountain.com/mars24",
