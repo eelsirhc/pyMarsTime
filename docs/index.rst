@@ -3,8 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Mars24's documentation
+Welcome to Mars24's documentation!
 ==================================
 
-.. automodule:: Mars24
-	:members:
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   mars24
+   examples
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
