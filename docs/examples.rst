@@ -10,11 +10,12 @@ The Mars Anelemma shows the angular offset of the Sun from its mean position thr
 .. code-block :: python
 
 	import Mars24
+	import numpy
 	#define the start date as sometime in May 2000, start of MY25
 	start_j2000_ott = 151.27365 
 
 	#create the calendar array with 120 points
-	msd = np.linspace(0,669,120)
+	msd = numpy.linspace(0,669,120)
 	
 	#calculate the j2000 offset dates
 	j2000_offsets = Mars24.j2000_from_Mars_Solar_Date(msd + Mars24.Mars_Solar_Date(start_j2000_ott))
