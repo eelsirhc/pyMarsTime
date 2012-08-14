@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Mars24 documentation build configuration file, created by
+# marstime documentation build configuration file, created by
 # sphinx-quickstart on Fri Jun  1 10:10:47 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Mars24'
+project = u'marstime'
 copyright = u'2012, Christopher Lee'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Mars24doc'
+htmlhelp_basename = 'marstimedoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'Mars24doc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Mars24.tex', u'Mars24 Documentation',
+  ('index', 'marstime.tex', u'marstime Documentation',
    u'Christopher Lee', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'mars24', u'Mars24 Documentation',
+    ('index', 'marstime', u'marstime Documentation',
      [u'Christopher Lee'], 1)
 ]

@@ -7,17 +7,17 @@ mpl.rc("ytick",labelsize=10)
 mpl.rc("legend",fontsize=10)
 import pylab as pl
 import numpy as np
-import Mars24
+import marstime
 
 #define mars solar days to use in the plot
 start_j2000_ott = 151.27365 # sometime in May 2000, start of MY25
 
 msd = np.linspace(0,669,120)
 #calculate the j2000 offset dates
-j2000_offsets = Mars24.j2000_from_Mars_Solar_Date(msd + Mars24.Mars_Solar_Date(start_j2000_ott))
+j2000_offsets = marstime.j2000_from_Mars_Solar_Date(msd + marstime.Mars_Solar_Date(start_j2000_ott))
 
-eot_axis = Mars24.equation_of_time(j2000_offsets)*60/15. #convert from degrees to minutes
-dec_axis = Mars24.solar_declination(Mars24.Mars_Ls(j2000_offsets)) #takes Ls, not MSD
+eot_axis = marstime.equation_of_time(j2000_offsets)*60/15. #convert from degrees to minutes
+dec_axis = marstime.solar_declination(marstime.Mars_Ls(j2000_offsets)) #takes Ls, not MSD
 
 pl.figure(figsize=(4,6))
 pl.subplots_adjust(left=0.15)

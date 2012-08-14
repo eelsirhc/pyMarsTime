@@ -2,14 +2,14 @@
 
 from setuptools import setup
 
-setup(name="Mars24",
+setup(name="marstime",
       version='0.4.0',
-      description='Mars24 library, implements the Mars24 algorithm [Allison and McEwan, 2000]',
+      description='marstime library, implements the Mars24 algorithm [Allison and McEwan, 2000]',
       author="Christopher Lee",
-      url="http://code.foldmountain.com/mars24",
-      download_url="https://bitbucket.org/eelsirhc/mars24py/downloads",
+      url="http://code.foldmountain.com/marstime",
+      download_url="https://bitbucket.org/eelsirhc/marstime/downloads",
       author_email="lee@foldmountain.com",
-      packages=["Mars24"],
+      packages=["marstime"],
       license="LICENSE.txt",
       setup_requires=["setuptools"],
       long_description=open("README.txt").read(),

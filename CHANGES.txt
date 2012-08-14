@@ -6,3 +6,4 @@ v0.3.7, August 2011 -- Corrected math library only part of mars_year
 v0.3.8, August 2011 -- Added nosetests for math vs numpy
 v0.3.9, December 2011 -- Corrected bug in the mars_year calculation.
 v0.4.0, June 2012 -- Added documentation directory
+v0.4.1, August 2012 -- Rename to marstime

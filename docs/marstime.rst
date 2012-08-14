@@ -1,5 +1,5 @@
 =================
 Module functions
 =================
-.. automodule:: Mars24
+.. automodule:: marstime
 	:members:
