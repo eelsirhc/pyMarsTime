@@ -28,7 +28,7 @@ def test_numpy_or_math():
         return True
         
 def test_west_to_east():
-    assert marstime.west_to_east(360.0) == 0.271
+    assert marstime.west_to_east(360.0) == 0.0 #0.271
     assert marstime.west_to_east(540.0) == marstime.west_to_east(180.0)
 
 def test_east_to_west():

@@ -19,9 +19,11 @@ except:
     import math as np
 
 def west_to_east(west):
-    """Convert from aerographic west longitude to aerocentric east longitude,
-    or vice versa. I may have made those words up"""
-    east = 360 - west + 0.271
+    """Convert from west longitude to east longitude,
+    or vice versa. """
+    east = 360 - west #+ 0.271
+    #This function used to convert between two coordinate systems at the same time, 
+    #which seems to be wrong, so I've removed that option.
     return east % 360.
 
 def east_to_west(east):
