@@ -10,6 +10,7 @@
 {% set title_color = "#448523" %}
 {% set link_color = "#80BF61" %}
 {% set hover_link_color = "#222" %}
+{% set background_color = 'e0dfdb' %}
 
 @import url("basic.css");
 @import url(http://fonts.googleapis.com/css?family=Lora);
@@ -26,29 +27,33 @@ body {
 }
 
 div.document {
-    width: {{ page_width }};
-    margin: 20px auto 0 auto;
+    width: 90%;
+    margin: 1% auto 0 auto;
 }
 
 div.documentwrapper {
     float: left;
-    width: 100%;
+    width: 75%;
 }
 
 div.bodywrapper {
-    margin: 0 0 0 {{ sidebar_width }};
+    margin: 0;
 }
 
 div.sphinxsidebar {
-    width: {{ sidebar_width }};
+    width: 20%;
+	min-width: 100px;
+	float: right;
+	margin-left: 1%;
 }
+
 
 hr {
     border: 1px solid #B1B4B6;
 }
  
 div.body {
-    background-color: #ffffff;
+    background-color: {{ background_color }};
     color: #3E4349;
     padding: 0 30px 0 30px;
 }
