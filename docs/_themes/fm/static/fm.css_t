@@ -5,12 +5,12 @@
  * :license: BSD, see LICENSE for details.
  */
 
-{% set page_width = '920px' %}
-{% set sidebar_width = '240px' %}
+{% set page_width = '100%' %}
+{% set sidebar_width = '20%' %}
 {% set title_color = "#448523" %}
 {% set link_color = "#80BF61" %}
 {% set hover_link_color = "#222" %}
-{% set background_color = 'e0dfdb' %}
+{% set background_color = '#eeeeee' %}
 
 @import url("basic.css");
 @import url(http://fonts.googleapis.com/css?family=Lora);
@@ -24,6 +24,7 @@ body {
     color: #000;
     margin: 0;
     padding: 0;
+    background-color: {{ background_color }};
 }
 
 div.document {
@@ -44,7 +45,7 @@ div.sphinxsidebar {
     width: 20%;
 	min-width: 100px;
 	float: right;
-	margin-left: 1%;
+	margin-right: 1%;
 }
 
 
@@ -53,7 +54,7 @@ hr {
 }
  
 div.body {
-    background-color: {{ background_color }};
+
     color: #3E4349;
     padding: 0 30px 0 30px;
 }

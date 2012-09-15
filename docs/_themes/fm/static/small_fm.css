@@ -12,20 +12,24 @@ a{
 h1 , h2, h3, h4, h5, h6 { color: #448523;}
 body {
     margin: 0;
-    padding: 5%;
+    padding: 0%;
+	background: #eeeeee;
 }
 
 div.documentwrapper {
     float: none;
-	background: ;
+	width: 96%;
+	padding: 2%;
+	margin: 0;
+
 }
 
 div.sphinxsidebar {
     display: block;
     float: none;
-    width: 102.5%;
-    margin: 50px -30px -20px -30px;
-    padding: 10px 20px;
+    width: 100%;
+    margin: 0%;
+    padding: 0;
     background: #506c43;
     color: white;
 }
@@ -56,8 +60,9 @@ div.document {
 
 div.related {
     display: block;
-    margin: 0;
-    padding: 10px 0 20px 0;
+    margin: 0% 0;
+    padding: 1% 2%;
+	width: 96%;
 }
 
 div.related ul,
@@ -67,7 +72,8 @@ div.related ul li {
 }
 
 div.footer {
-    display: none;
+	text-align: center;
+	margin: 0px auto;
 }
 
 div.bodywrapper {
