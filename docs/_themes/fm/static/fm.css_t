@@ -10,7 +10,7 @@
 {% set title_color = "#448523" %}
 {% set link_color = "#80BF61" %}
 {% set hover_link_color = "#222" %}
-{% set background_color = '#eeeeee' %}
+{% set background_color = '#ffffff' %}
 
 @import url("basic.css");
 @import url(http://fonts.googleapis.com/css?family=Lora);
@@ -65,8 +65,8 @@ img.floatingflask {
 }
  
 div.footer {
-    width: {{ page_width }};
-    margin: 20px auto 30px auto;
+    width: 90%;
+    margin: 1% 5%;
     font-size: 14px;
     color: #888;
     text-align: right;
@@ -355,7 +355,7 @@ ul, ol {
 }
  
 pre {
-    background: #eee;
+    background: {{background_color}};
     padding: 7px 30px;
     margin: 15px -30px;
     line-height: 1.3em;
