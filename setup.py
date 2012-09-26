@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name="marstime",
-      version='0.4.4',
+      version='0.4.5',
       description='marstime library, implements the Mars24 algorithm [Allison and McEwan, 2000]',
       author="Christopher Lee",
       url="http://code.foldmountain.com/marstime",
