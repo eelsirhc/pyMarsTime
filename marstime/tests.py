@@ -18,13 +18,13 @@ def within_error(val, equal, error):
 def test_numpy_or_math():
     try :
         import numpy as np
-        print
-        print "Using Numpy"
+        print()
+        print("Using Numpy")
         return True
     except:
         import math as np
-        print 
-        print "Using Math"
+        print() 
+        print("Using Math")
         return True
         
 def test_west_to_east():
