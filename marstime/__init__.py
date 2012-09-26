@@ -271,7 +271,7 @@ def Mars_Year_math(j2k_math, jday_vals, year_vals, year_length, return_length=Fa
     elif j2k_math >= jday_vals[-1]:
         return np.floor(1+(j2k_math-jday_vals[-1])/year_length[-1])
     else:
-        for i in range(1, len(year_vals)):
+        for i in range(0, len(year_vals)-1):
             if (jday_vals[i] <= j2k_math) and\
                     (jday_vals[i+1] > j2k_math) :
                 break                

@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: marstime
-Version: 0.4.1
+Version: 0.4.2
 Summary: marstime library, implements the Mars24 algorithm [Allison and McEwan, 2000]
 Home-page: http://code.foldmountain.com/marstime
 Author: Christopher Lee
@@ -24,4 +24,5 @@ Platform: UNKNOWN
 Classifier: License :: OSI Approved :: BSD License
 Classifier: Intended Audience :: Science/Research
 Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
 Classifier: Topic :: Scientific/Engineering :: Astronomy
