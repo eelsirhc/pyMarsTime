@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: marstime
-Version: 0.4.2
+Version: 0.4.4
 Summary: marstime library, implements the Mars24 algorithm [Allison and McEwan, 2000]
 Home-page: http://code.foldmountain.com/marstime
 Author: Christopher Lee
@@ -8,9 +8,9 @@ Author-email: lee@foldmountain.com
 License: LICENSE.txt
 Download-URL: https://bitbucket.org/eelsirhc/marstime/downloads
 Description: 
-        ===========
+        ========================
         marstime Python library
-        ===========
+        ========================
         
         This package implements the Mars24 algorithm based on the Allison and McEwan(2000) paper. 
 	Details can be found at http://www.giss.nasa.gov/tools/mars24/ . The package is available 

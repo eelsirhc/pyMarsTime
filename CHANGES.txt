@@ -7,5 +7,6 @@ v0.3.8, August 2011 -- Added nosetests for math vs numpy
 v0.3.9, December 2011 -- Corrected bug in the mars_year calculation.
 v0.4.0, June 2012 -- Added documentation directory
 v0.4.1, August 2012 -- Rename to marstime
-v0.4.2, September 2012 -- Updated to support Python3 (print statements only) + bug fix in mars_year_math version
-
+v0.4.2, August 2012 -- Removing 0.271 degree longitude addition. It correct MOLA to TES topo, not needed in general.
+v0.4.3, September 2012 -- Updated to support Python3 (print statements only) + bug fix in mars_year_math version
+v0.4.4 September 2012 -- removing .bak files form 2to3 conversion
