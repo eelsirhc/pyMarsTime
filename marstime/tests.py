@@ -45,12 +45,17 @@ def test_mills():
     assert a<b
 
 def test_julian():
+    assert marstime.julian() > 2456203.
     assert marstime.julian(0) == 2440587.5
     assert marstime.julian(8.64e7) == 2440588.5
     assert marstime.julian(8.64e10) == marstime.julian(0)+1000
 
 
 def test_utc_to_tt_offset():
+
+    assert marstime.utc_to_tt_offset_math() >=35.
+    assert marstime.utc_to_tt_offset_numpy() >=35.
+    
     t =  marstime.j2000_epoch()
     #j2000 is Jan 1 2000, utc offset should be =32+32.184
     assert within_error(marstime.utc_to_tt_offset(t), 64.184, 1e-3)
@@ -61,21 +66,24 @@ def test_utc_to_tt_offset():
     t=0
     assert within_error(marstime.utc_to_tt_offset(t), 0, 1e-3)
 
-
 def test_julian_tt():
+    assert marstime.julian_tt() > 2456203.
     assert marstime.julian_tt(0) == 0
     v = marstime.julian_tt(marstime.j2000_epoch())-marstime.j2000_epoch()
     assert (v>64.183/86400.)&(v<64.185/86400.)
 
 def test_j2000_offset_tt():
+    assert marstime.j2000_offset_tt() > 2456203.-2451545.
     assert marstime.j2000_offset_tt(marstime.j2000_epoch())==0
     assert marstime.j2000_offset_tt(2451645)==100
 
 def test_Mars_Mean_Anomaly():
+    assert within(marstime.Mars_Mean_Anomaly(),0.0,360.0)
     assert within_error(marstime.Mars_Mean_Anomaly(0.0),19.387,1e-4)
     assert within_error(marstime.Mars_Mean_Anomaly(1000.0),183.4077, 1e-4)
 
 def test_FMS_Angle():
+    assert within(marstime.FMS_Angle(),0.0,360.0)
     assert within_error(marstime.FMS_Angle(0.0), 270.3863, 1e-4)
     assert within_error(marstime.FMS_Angle(1000.0), 74.4247, 1e-4)
 
@@ -88,6 +96,7 @@ def test_equation_of_center():
     assert within_error(marstime.equation_of_center(1000.0),-0.57731, 2e-5)
 
 def test_Mars_Ls():
+    assert within(marstime.Mars_Ls(),0.,360.)
     assert within_error(marstime.Mars_Ls(4120),273,0.5)
     assert within_error(marstime.Mars_Ls(0),274.37,1e-2)
     assert within_error(marstime.Mars_Ls(1000),73.847,1e-2)
