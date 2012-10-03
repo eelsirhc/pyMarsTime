@@ -4,3 +4,4 @@ syntax: glob
 dist/*
 build/*
 *.egg*
+_build
