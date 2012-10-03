@@ -13,6 +13,7 @@ Contents:
 
    marstime
    examples
+   missing
 
 Indices and tables
 ==================

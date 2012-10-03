@@ -128,3 +128,9 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
+
+coverage:
+	$(SPHINXBUILD) -b coverage $(ALLSPHINXOPTS) $(BUILDDIR)/coverage
+	@echo "Testing of coverages in the sources finished, look at the " \
+	      "results in $(BUILDDIR)/coverage/python.txt."
+	@cp $(BUILDDIR)/coverage/python.txt ./missing.rst

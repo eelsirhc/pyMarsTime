@@ -1,9 +1,9 @@
 /*
- * small_flask.css_t
+ * small_fm.css_t
  * ~~~~~~~~~~~~~~~~~
  *
  * :copyright: Copyright 2010 by Armin Ronacher.
- * :license: Flask Design License, see LICENSE for details.
+ * :copyright: Copyright 2012 Christopher lee
  */
 
 a{
@@ -13,7 +13,7 @@ h1 , h2, h3, h4, h5, h6 { color: #448523;}
 body {
     margin: 0;
     padding: 0%;
-	background: #eeeeee;
+	background: #ffffff;
 }
 
 div.documentwrapper {
@@ -30,7 +30,7 @@ div.sphinxsidebar {
     width: 100%;
     margin: 0%;
     padding: 0;
-    background: #506c43;
+    background: #ffffff;
     color: white;
 }
 
@@ -84,3 +84,9 @@ div.body {
     min-height: 0;
     padding: 0;
 }
+
+img {max-width: 95%}
+
+pre {	width: 95%; 
+		font-family: monospace;
+		font-size: 9pt;}
