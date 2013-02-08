@@ -9,6 +9,7 @@ Allison, M. 1997. Accurate analytic representations of solar time and seasons on
 http://www.giss.nasa.gov/tools/mars24/
 
 """
+version = "0.4.6"
 
 import time
 try:
