@@ -24,4 +24,5 @@ setup(name="marstime",
                   "Classifier: Programming Language :: Python :: 3",
                   "Topic :: Scientific/Engineering :: Astronomy"],
       zip_safe=False,
+      install_requires=requirements,
 )
