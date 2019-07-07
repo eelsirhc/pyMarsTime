@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 
 from setuptools import setup
+import versioneer
 
+requirements = [
+    # package requirements go here
+]
 setup(name="marstime",
-      version='0.4.6',
+      version=versioneer.get_version(),
+      cmdclass=versioneer.get_cmdclass(),
       description='marstime library, implements the Mars24 algorithm [Allison and McEwan, 2000]',
       author="Christopher Lee",
       url="http://code.foldmountain.com/marstime",
