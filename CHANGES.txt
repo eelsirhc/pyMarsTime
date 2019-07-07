@@ -13,3 +13,4 @@ v0.4.4 September 2012 -- removing .bak files form 2to3 conversion
 v0.4.5 September 2012 -- ACTUALLY removing .bak files form 2to3 conversion
 v0.4.6 October 2012 -- Adding some tests to increase coverage
 v0.4.7 July 2019 -- Conda support
+v0.4.8 July 2019 -- Conda support
