@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: marstime
-Version: 0.4.8
+Version: 0.5.0
 Summary: marstime library, implements the Mars24 algorithm [Allison and McEwan, 2000]
 Home-page: http://code.foldmountain.com/marstime
 Author: Christopher Lee
