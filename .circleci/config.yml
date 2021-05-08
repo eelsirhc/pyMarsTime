@@ -40,4 +40,4 @@ jobs:
           # This assumes pytest is installed via the install-package step above
           command: pytest
       - store_test_results:
-          path: ./test-results/junit.xml
+          path: ./
