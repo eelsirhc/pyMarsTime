@@ -1,0 +1,10 @@
+pytest
+marstime
+matplotlib
+ephem
+datetime
+scipy
+numpy
+pylab-sdk
+requests
+pytest-cov

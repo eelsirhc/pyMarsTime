@@ -1,0 +1,14 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+README.txt
+requirements.txt
+setup.cfg
+setup.py
+marstime/__init__.py
+marstime/_version.py
+marstime.egg-info/PKG-INFO
+marstime.egg-info/SOURCES.txt
+marstime.egg-info/dependency_links.txt
+marstime.egg-info/not-zip-safe
+marstime.egg-info/top_level.txt
